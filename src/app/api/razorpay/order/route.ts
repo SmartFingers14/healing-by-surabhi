@@ -39,15 +39,19 @@ export async function POST(request: Request) {
     // Razorpay expects the amount in the smallest currency unit (paise for INR).
     const amount = Math.round(service.price * 100);
 
+    // Receipt must be <= 40 chars. Use a short timestamp-based id.
+    const receipt = `rcpt_${Date.now().toString(36)}`;
+
     const order = await razorpay.orders.create({
       amount,
       currency: "INR",
-      receipt: `rcpt_${slug}_${Date.now()}`,
+      receipt,
       notes: {
         service: service.name,
         slug: service.slug,
       },
     });
+
 
     return NextResponse.json({
       orderId: order.id,
@@ -64,3 +68,5 @@ export async function POST(request: Request) {
     );
   }
 }
+
+
