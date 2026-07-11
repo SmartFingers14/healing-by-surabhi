@@ -10,10 +10,14 @@ export const metadata: Metadata = {
   keywords: "numerology, tarot reading, numerologist, DOB analysis, name analysis, mobile number analysis, business numerology, healing, Surabhi Kapsime",
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "32x32" },
-      { url: "/favicon.png", sizes: "512x512", type: "image/png" },
+      // Light theme → gold/dark icon
+      { url: "/favicon-light-32.png", sizes: "32x32", type: "image/png", media: "(prefers-color-scheme: light)" },
+      { url: "/favicon-light-192.png", sizes: "192x192", type: "image/png", media: "(prefers-color-scheme: light)" },
+      // Dark theme → white/light icon
+      { url: "/favicon-dark-32.png", sizes: "32x32", type: "image/png", media: "(prefers-color-scheme: dark)" },
+      { url: "/favicon-dark-192.png", sizes: "192x192", type: "image/png", media: "(prefers-color-scheme: dark)" },
     ],
-    apple: "/favicon.png",
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
     title: "Healing by Surabhi | Certified Numerologist & Tarot Reader",

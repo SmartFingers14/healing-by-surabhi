@@ -2,10 +2,10 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import Link from "next/link";
-import { CheckCircle, Sparkles, ArrowRight } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import { personalServices, businessServices, siteConfig } from "@/lib/data";
 import ServiceIcon from "@/components/ServiceIcon";
+import BookingPayButton from "@/components/BookingPayButton";
 
 function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef(null);
@@ -38,9 +38,13 @@ function PricingCard({ service, highlight = false }: { service: typeof personalS
           </li>
         ))}
       </ul>
-      <Link href="/contact" className={`btn-shimmer w-full flex items-center justify-center gap-2 px-6 py-3 font-semibold rounded-full transition-all ${highlight ? "bg-gradient-to-r from-temple-gold to-temple-copper text-white" : "border-2 border-temple-gold text-temple-gold hover:bg-temple-gold hover:text-white"}`}>
-        <Sparkles size={16} /> Book Now
-      </Link>
+      <BookingPayButton
+        slug={service.slug}
+        serviceName={service.name}
+        price={service.price}
+        label="Pay & Book Now"
+        className={`btn-shimmer w-full flex items-center justify-center gap-2 px-6 py-3 font-semibold rounded-full transition-all ${highlight ? "bg-gradient-to-r from-temple-gold to-temple-copper text-white" : "border-2 border-temple-gold text-temple-gold hover:bg-temple-gold hover:text-white"}`}
+      />
     </div>
   );
 }
