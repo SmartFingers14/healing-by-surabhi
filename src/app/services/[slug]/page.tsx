@@ -2,8 +2,10 @@
 
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { CheckCircle, ArrowLeft } from "lucide-react";
+
 import { allServices, siteConfig } from "@/lib/data";
 import ServiceIcon from "@/components/ServiceIcon";
 import BookingPayButton from "@/components/BookingPayButton";
@@ -49,6 +51,11 @@ export default function ServiceDetailPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
             <div className="md:col-span-2">
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
+                <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-saffron-100 shadow-md">
+                  <Image src={service.image} alt={service.name} fill className="object-cover" priority />
+                </div>
+              </motion.div>
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
                 <h2 className="text-2xl font-bold text-maroon-900 mb-6" style={{ fontFamily: "var(--font-display)" }}>
                   What&apos;s <span className="text-gradient-gold">Included</span>

@@ -3,9 +3,11 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { personalServices, businessServices } from "@/lib/data";
 import ServiceIcon from "@/components/ServiceIcon";
+
 
 function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef(null);
@@ -41,8 +43,12 @@ export default function ServicesPage() {
             {personalServices.map((s, i) => (
               <FadeIn key={s.slug} delay={i * 0.08}>
                 <Link href={`/services/${s.slug}`} className="block h-full">
-                  <div className="card-hover relative bg-white/80 backdrop-blur rounded-2xl p-6 border border-saffron-100 h-full flex flex-col">
-                    {s.popular && <div className="absolute -top-3 right-4 px-3 py-1 bg-gradient-to-r from-temple-gold to-temple-copper text-white text-xs font-semibold rounded-full">★ Popular</div>}
+                  <div className="card-hover relative bg-white/80 backdrop-blur rounded-2xl overflow-hidden border border-saffron-100 h-full flex flex-col">
+                    {s.popular && <div className="absolute top-3 right-3 z-10 px-3 py-1 bg-gradient-to-r from-temple-gold to-temple-copper text-white text-xs font-semibold rounded-full">★ Popular</div>}
+                    <div className="relative h-44 w-full overflow-hidden">
+                      <Image src={s.image} alt={s.name} fill className="object-cover transition-transform duration-500 hover:scale-105" />
+                    </div>
+                    <div className="p-6 flex flex-col flex-1">
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-100 to-orange-50 flex items-center justify-center mb-3"><ServiceIcon name={s.icon} className="w-6 h-6 text-amber-600" /></div>
                     <h3 className="text-lg font-bold text-maroon-800 mb-1">{s.name}</h3>
                     <p className="hindi-text text-xs text-saffron-600 mb-3">{s.hindiName}</p>
@@ -62,6 +68,7 @@ export default function ServicesPage() {
                       </div>
                       <span className="text-sm text-temple-gold font-medium flex items-center gap-1">Details <ArrowRight size={14} /></span>
                     </div>
+                    </div>
                   </div>
                 </Link>
               </FadeIn>
@@ -77,8 +84,12 @@ export default function ServicesPage() {
             {businessServices.map((s, i) => (
               <FadeIn key={s.slug} delay={i * 0.08}>
                 <Link href={`/services/${s.slug}`} className="block h-full">
-                  <div className="card-hover relative bg-white/80 backdrop-blur rounded-2xl p-6 border border-saffron-100 h-full flex flex-col">
-                    {s.popular && <div className="absolute -top-3 right-4 px-3 py-1 bg-gradient-to-r from-temple-gold to-temple-copper text-white text-xs font-semibold rounded-full">★ Best Value</div>}
+                  <div className="card-hover relative bg-white/80 backdrop-blur rounded-2xl overflow-hidden border border-saffron-100 h-full flex flex-col">
+                    {s.popular && <div className="absolute top-3 right-3 z-10 px-3 py-1 bg-gradient-to-r from-temple-gold to-temple-copper text-white text-xs font-semibold rounded-full">★ Best Value</div>}
+                    <div className="relative h-44 w-full overflow-hidden">
+                      <Image src={s.image} alt={s.name} fill className="object-cover transition-transform duration-500 hover:scale-105" />
+                    </div>
+                    <div className="p-6 flex flex-col flex-1">
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-100 to-orange-50 flex items-center justify-center mb-3"><ServiceIcon name={s.icon} className="w-6 h-6 text-amber-600" /></div>
                     <h3 className="text-lg font-bold text-maroon-800 mb-1">{s.name}</h3>
                     <p className="hindi-text text-xs text-saffron-600 mb-3">{s.hindiName}</p>
@@ -97,6 +108,7 @@ export default function ServicesPage() {
                         <span className="text-2xl font-bold text-temple-gold">₹{s.price.toLocaleString()}</span>
                       </div>
                       <span className="text-sm text-temple-gold font-medium flex items-center gap-1">Details <ArrowRight size={14} /></span>
+                    </div>
                     </div>
                   </div>
                 </Link>

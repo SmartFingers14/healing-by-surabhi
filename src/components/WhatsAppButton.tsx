@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { siteConfig } from "@/lib/data";
@@ -8,6 +9,8 @@ import { siteConfig } from "@/lib/data";
 export default function WhatsAppButton() {
   const [showTooltip, setShowTooltip] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const pathname = usePathname();
+
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 2000);
@@ -18,7 +21,10 @@ export default function WhatsAppButton() {
     };
   }, []);
 
+  // Hide the floating WhatsApp button on the standalone Meta Ads landing page.
+  if (pathname?.startsWith("/consultation")) return null;
   if (!isVisible) return null;
+
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">

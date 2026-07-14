@@ -25,10 +25,12 @@ export interface Service {
   price: number;
   originalPrice?: number;
   icon: string;
+  image: string;
   features: string[];
-  category: "personal" | "business";
+  category: "personal" | "business" | "consultation";
   popular?: boolean;
 }
+
 
 export const personalServices: Service[] = [
   {
@@ -39,7 +41,9 @@ export const personalServices: Service[] = [
     description: "A comprehensive analysis of your date of birth that reveals your life path, strengths, challenges, and destiny. This detailed 40-45 page report covers every aspect of your numerological profile with actionable insights and personalized remedies.",
     price: 2100,
     icon: "calculator",
+    image: "/services/dob-analysis.jpg",
     features: [
+
       "Loshu Grid Analysis",
       "Missing Number Analysis & Remedies",
       "Mahadasha Analysis",
@@ -64,7 +68,9 @@ export const personalServices: Service[] = [
     description: "Your name carries a unique vibration that influences every area of your life. This analysis examines your first name, full name, and nickname to determine if your name supports your birth energy — with 2-3 corrected name suggestions if needed.",
     price: 1500,
     icon: "pen-line",
+    image: "/services/name-analysis.jpg",
     features: [
+
       "Complete First Name Analysis",
       "Full Name Energy Analysis",
       "Nickname Analysis",
@@ -83,7 +89,9 @@ export const personalServices: Service[] = [
     description: "Your mobile number isn't just digits — each number carries a specific energy. When that energy clashes with your Date of Birth, it creates invisible resistance in your life. This analysis checks both together and gives you honest insights.",
     price: 531,
     icon: "smartphone",
+    image: "/services/mobile-number-analysis.jpg",
     features: [
+
       "Loshu Grid Formation",
       "Lucky, Unlucky & Neutral Number Identification",
       "Mobile Number Total Analysis & Description",
@@ -104,7 +112,9 @@ export const personalServices: Service[] = [
     description: "A unique blend of Tarot and Numerology that gives you deep insight into your current energy state. This reading helps you understand where you are right now, what energies are at play, and what steps you can take to align with your highest potential.",
     price: 2100,
     icon: "layers",
+    image: "/services/tarot-reading.jpg",
     features: [
+
       "Overall Tarot Reading",
       "Numerology-Based Current Energy Analysis",
       "Career & Finance Insights",
@@ -125,7 +135,9 @@ export const personalServices: Service[] = [
     price: 5100,
     originalPrice: 7231,
     icon: "sparkles",
+    image: "/services/full-personal-package.jpg",
     features: [
+
       "Everything in DOB Analysis",
       "Everything in Name Analysis",
       "Everything in Mobile Number Analysis",
@@ -149,7 +161,9 @@ export const businessServices: Service[] = [
     description: "Your business name sets the energetic foundation for everything your company does. This analysis evaluates the numerological vibration of your business name and provides corrections to attract more success, clients, and prosperity.",
     price: 2100,
     icon: "building-2",
+    image: "/services/business-name-analysis.jpg",
     features: [
+
       "Complete Business Name Energy Analysis",
       "Numerological Vibration Assessment",
       "Compatibility with Owner's DOB",
@@ -167,7 +181,9 @@ export const businessServices: Service[] = [
     description: "Your business phone number is often the first point of contact with clients. Ensure it carries the right energy to attract opportunities, build trust, and support business growth.",
     price: 531,
     icon: "phone-call",
+    image: "/services/business-mobile-analysis.jpg",
     features: [
+
       "Business Number Energy Analysis",
       "Loshu Grid Formation",
       "Impact on Client Acquisition",
@@ -185,7 +201,9 @@ export const businessServices: Service[] = [
     description: "Your business logo is more than just a design — it's a visual representation of energy. This scientific analysis examines your logo through the lens of numerology and provides corrections to ensure it radiates the right energy for success.",
     price: 5100,
     icon: "palette",
+    image: "/services/business-logo-analysis.jpg",
     features: [
+
       "Scientific Logo Energy Analysis",
       "Color Numerology Assessment",
       "Shape & Symbol Analysis",
@@ -204,7 +222,9 @@ export const businessServices: Service[] = [
     description: "Your visiting card is your business ambassador. This analysis ensures that every element — from colors to layout to text placement — carries the right numerological energy to make lasting impressions and attract business.",
     price: 5100,
     icon: "credit-card",
+    image: "/services/business-visiting-card.jpg",
     features: [
+
       "Complete Card Layout Analysis",
       "Text & Font Energy Assessment",
       "Color Numerology Check",
@@ -224,7 +244,9 @@ export const businessServices: Service[] = [
     price: 9999,
     originalPrice: 12831,
     icon: "crown",
+    image: "/services/full-business-package.jpg",
     features: [
+
       "Everything in Business Name Analysis",
       "Everything in Business Mobile Analysis",
       "Everything in Logo Analysis & Corrections",
@@ -239,7 +261,34 @@ export const businessServices: Service[] = [
   },
 ];
 
-export const allServices = [...personalServices, ...businessServices];
+// Standalone consultation offer — used ONLY by the /consultation landing page (Meta Ads).
+// Intentionally kept out of personalServices/businessServices so it never appears in
+// the main site listings, but it IS added to allServices so the Razorpay order route
+// (which validates price by slug on the server) accepts it.
+export const consultationService: Service = {
+  slug: "life-clarity-consultation",
+  name: "Life Clarity Consultation",
+  hindiName: "जीवन स्पष्टता परामर्श",
+  shortDescription: "A live 20-25 min personal call with Surabhi to decode your #1 life problem + 3 remedies to start today",
+  description:
+    "A focused, live one-on-one phone call with certified numerologist Surabhi. In 20-25 minutes she reads your core numbers, identifies the real root cause of the problem troubling you most — career, money, relationship or health — and gives you 3 practical remedies you can begin the same day.",
+  price: 499,
+  originalPrice: 2100,
+  icon: "phone-call",
+  image: "/services/dob-analysis.jpg",
+  features: [
+    "Live 20-25 min personal call with Surabhi",
+    "Your 3 core numbers decoded (Driver, Destiny, Name)",
+    "Root cause of your #1 problem identified",
+    "3 practical remedies to start the same day",
+    "Lucky numbers, colours & dates shared on WhatsApp",
+    "100% private & confidential",
+  ],
+  category: "consultation",
+  popular: true,
+};
+
+export const allServices = [...personalServices, ...businessServices, consultationService];
 
 export const stats = [
   { value: "12,581+", label: "Reports Delivered", icon: "bar-chart-3" },

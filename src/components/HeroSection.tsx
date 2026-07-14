@@ -6,6 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Sparkles, Phone, ChevronDown } from "lucide-react";
 import { siteConfig } from "@/lib/data";
+import BookingPayButton from "@/components/BookingPayButton";
+
 
 /* ─── Animated Counter ─── */
 function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
@@ -287,22 +289,10 @@ export default function HeroSection() {
           {/* CTA Buttons */}
           <motion.div custom={3} variants={textReveal} initial="hidden" animate="visible"
             className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-10 px-4 sm:px-0">
-            <Link href="/contact" className="w-full sm:w-auto">
-              <motion.div
-                whileHover={{ scale: 1.05, boxShadow: "0 0 60px rgba(245,158,11,0.4)" }}
-                whileTap={{ scale: 0.97 }}
-                className="group relative px-7 sm:px-10 py-3.5 sm:py-4 rounded-full font-bold text-base sm:text-lg bg-gradient-to-r from-amber-500 via-amber-400 to-orange-500 text-white cursor-pointer flex items-center justify-center gap-2 sm:gap-2.5 shadow-[0_0_30px_rgba(245,158,11,0.25)] overflow-hidden"
-              >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent"
-                  animate={{ x: ["-200%", "200%"] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", repeatDelay: 1 }}
-                />
-                <Sparkles size={18} className="relative z-10" /> 
-                <span className="relative z-10">Book Your Reading</span> 
-                <ArrowRight size={16} className="relative z-10" />
-              </motion.div>
-            </Link>
+            <BookingPayButton
+              label="Book Your Reading"
+              className="group relative w-full sm:w-auto px-7 sm:px-10 py-3.5 sm:py-4 rounded-full font-bold text-base sm:text-lg bg-gradient-to-r from-amber-500 via-amber-400 to-orange-500 text-white cursor-pointer flex items-center justify-center gap-2 sm:gap-2.5 shadow-[0_0_30px_rgba(245,158,11,0.25)] hover:scale-105 transition-transform"
+            />
             <a href={siteConfig.whatsappLink} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
               <motion.div
                 whileHover={{ scale: 1.05, borderColor: "rgba(245,158,11,0.4)" }}

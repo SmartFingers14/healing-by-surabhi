@@ -2,12 +2,18 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Star, ArrowRight, Phone as PhoneIcon, MessageCircle, Mail, Camera } from "lucide-react";
 import { siteConfig } from "@/lib/data";
 
 export default function Footer() {
+  const pathname = usePathname();
+  // Hide the site footer on the standalone Meta Ads landing page.
+  if (pathname?.startsWith("/consultation")) return null;
+
   return (
+
     <footer className="bg-[#0f0603] text-white/60 relative overflow-hidden">
       {/* Decorative gradient */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[1px] bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />

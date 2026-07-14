@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Sparkles, X, Loader2, CheckCircle } from "lucide-react";
-import { siteConfig } from "@/lib/data";
+import { siteConfig, allServices } from "@/lib/data";
+
 
 interface RazorpayResponse {
   razorpay_order_id: string;
@@ -56,9 +58,10 @@ export default function BookingPayButton({
   className = "",
   label = "Pay & Book Now",
 }: {
-  slug: string;
-  serviceName: string;
-  price: number;
+  // When these are omitted, the modal shows a service selector.
+  slug?: string;
+  serviceName?: string;
+  price?: number;
   className?: string;
   label?: string;
 }) {
@@ -66,6 +69,32 @@ export default function BookingPayButton({
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   const [form, setForm] = useState({ name: "", phone: "", dob: "", email: "" });
+  // If no fixed slug is provided, let the user choose a service in the modal.
+  const [selectedSlug, setSelectedSlug] = useState(slug ?? "");
+  const [mounted, setMounted] = useState(false);
+
+  // Portal target is only available on the client.
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Lock background scroll while the modal is open.
+  useEffect(() => {
+    if (open) {
+      const original = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = original;
+      };
+    }
+  }, [open]);
+
+
+  const fixedService = slug ? true : false;
+  const activeSlug = fixedService ? (slug as string) : selectedSlug;
+  const activeService = allServices.find((s) => s.slug === activeSlug);
+  const activeName = fixedService ? (serviceName as string) : activeService?.name ?? "";
+  const activePrice = fixedService ? (price as number) : activeService?.price ?? 0;
 
   const closeModal = () => {
     if (status === "loading") return;
@@ -77,8 +106,8 @@ export default function BookingPayButton({
   const notifyOnWhatsApp = (paymentId: string) => {
     const msg =
       `🙏 *Payment Received — New Booking*\n\n` +
-      `*Service:* ${serviceName}\n` +
-      `*Amount:* ₹${price.toLocaleString()}\n` +
+      `*Service:* ${activeName}\n` +
+      `*Amount:* ₹${activePrice.toLocaleString()}\n` +
       `*Payment ID:* ${paymentId}\n\n` +
       `*Name:* ${form.name}\n` +
       `*Phone:* ${form.phone}\n` +
@@ -90,6 +119,12 @@ export default function BookingPayButton({
 
   const handlePay = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!activeSlug || !activeService) {
+      setError("Please select a service to continue.");
+      return;
+    }
+
     setStatus("loading");
     setError("");
 
@@ -101,7 +136,7 @@ export default function BookingPayButton({
       const orderRes = await fetch("/api/razorpay/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slug }),
+        body: JSON.stringify({ slug: activeSlug }),
       });
       const orderData = await orderRes.json();
       if (!orderRes.ok) throw new Error(orderData.error || "Could not initiate payment.");
@@ -112,14 +147,14 @@ export default function BookingPayButton({
         amount: orderData.amount,
         currency: orderData.currency,
         name: siteConfig.name,
-        description: serviceName,
+        description: activeName,
         order_id: orderData.orderId,
         prefill: {
           name: form.name,
           contact: form.phone,
           email: form.email || undefined,
         },
-        notes: { service: serviceName, slug, dob: form.dob },
+        notes: { service: activeName, slug: activeSlug, dob: form.dob },
         theme: { color: "#C99700" },
         handler: async (response: RazorpayResponse) => {
           try {
@@ -160,6 +195,9 @@ export default function BookingPayButton({
     }
   };
 
+  const personal = allServices.filter((s) => s.category === "personal");
+  const business = allServices.filter((s) => s.category === "business");
+
   return (
     <>
       <button
@@ -170,15 +208,17 @@ export default function BookingPayButton({
         <Sparkles size={16} /> {label}
       </button>
 
-      {open && (
+      {open && mounted && createPortal(
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
           onClick={closeModal}
         >
           <div
-            className="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl border border-saffron-100"
+            className="relative w-full max-w-md max-h-[90vh] overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl border border-saffron-100"
+            style={{ backgroundColor: "#ffffff" }}
             onClick={(e) => e.stopPropagation()}
           >
+
             <button
               onClick={closeModal}
               className="absolute right-4 top-4 text-maroon-400 hover:text-maroon-700 transition-colors"
@@ -196,7 +236,7 @@ export default function BookingPayButton({
                   Payment Successful! 🙏
                 </h3>
                 <p className="text-sm text-maroon-700 mb-4">
-                  Thank you for booking <strong>{serviceName}</strong>. We&apos;ve opened WhatsApp so you can
+                  Thank you for booking <strong>{activeName}</strong>. We&apos;ve opened WhatsApp so you can
                   share your details with Surabhi. Your report will be delivered within 24 hours.
                 </p>
                 <button
@@ -209,13 +249,42 @@ export default function BookingPayButton({
             ) : (
               <form onSubmit={handlePay}>
                 <h3 className="text-xl font-bold text-maroon-900 mb-1" style={{ fontFamily: "var(--font-display)" }}>
-                  Book {serviceName}
+                  {fixedService ? `Book ${activeName}` : "Book Your Reading"}
                 </h3>
-                <p className="text-sm text-maroon-600 mb-5">
-                  Amount to pay: <span className="font-bold text-temple-gold">₹{price.toLocaleString()}</span>
-                </p>
+                {fixedService ? (
+                  <p className="text-sm text-maroon-600 mb-5">
+                    Amount to pay: <span className="font-bold text-temple-gold">₹{activePrice.toLocaleString()}</span>
+                  </p>
+                ) : (
+                  <p className="text-sm text-maroon-600 mb-5">
+                    Select a service, fill your details, and pay securely.
+                  </p>
+                )}
 
                 <div className="space-y-4">
+                  {!fixedService && (
+                    <div>
+                      <label className="block text-sm font-medium text-maroon-800 mb-1">Choose a Service *</label>
+                      <select
+                        required
+                        value={selectedSlug}
+                        onChange={(e) => setSelectedSlug(e.target.value)}
+                        className="w-full px-4 py-2.5 rounded-xl border border-saffron-200 bg-cream-50 text-maroon-900 focus:outline-none focus:ring-2 focus:ring-temple-gold/50 focus:border-temple-gold transition-all"
+                      >
+                        <option value="">Select a service</option>
+                        <optgroup label="Personal Numerology">
+                          {personal.map((s) => (
+                            <option key={s.slug} value={s.slug}>{s.name} — ₹{s.price.toLocaleString()}</option>
+                          ))}
+                        </optgroup>
+                        <optgroup label="Business Numerology">
+                          {business.map((s) => (
+                            <option key={s.slug} value={s.slug}>{s.name} — ₹{s.price.toLocaleString()}</option>
+                          ))}
+                        </optgroup>
+                      </select>
+                    </div>
+                  )}
                   <div>
                     <label className="block text-sm font-medium text-maroon-800 mb-1">Full Name *</label>
                     <input
@@ -275,7 +344,8 @@ export default function BookingPayButton({
                     </>
                   ) : (
                     <>
-                      <Sparkles size={18} /> Pay ₹{price.toLocaleString()} Securely
+                      <Sparkles size={18} />
+                      {activePrice > 0 ? `Pay ₹${activePrice.toLocaleString()} Securely` : "Pay & Book Securely"}
                     </>
                   )}
                 </button>
@@ -285,8 +355,11 @@ export default function BookingPayButton({
               </form>
             )}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
 }
+
+

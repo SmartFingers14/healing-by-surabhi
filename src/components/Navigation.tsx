@@ -7,6 +7,8 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sparkles, ChevronDown, Flower2, Briefcase } from "lucide-react";
 import { siteConfig, personalServices, businessServices } from "@/lib/data";
+import BookingPayButton from "@/components/BookingPayButton";
+
 
 const links = [
   { href: "/", label: "Home" },
@@ -25,6 +27,10 @@ export default function Navigation() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Hide global navigation on the standalone Meta Ads landing page.
+  const hideChrome = pathname?.startsWith("/consultation");
+
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -46,8 +52,12 @@ export default function Navigation() {
   }, []);
 
   const showGlass = scrolled || !isHome;
-  
+
+  // Standalone landing page has no site navigation — keep the visitor focused.
+  if (hideChrome) return null;
+
   return (
+
     <>
       <motion.nav
         initial={{ y: -100 }}
@@ -222,9 +232,10 @@ export default function Navigation() {
 
             {/* Desktop CTA + Mobile Toggle — right */}
             <div className="flex items-center gap-3 relative z-10">
-              <Link href="/contact" className="hidden md:flex items-center gap-1.5 px-5 py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white text-sm font-semibold rounded-full transition-all shadow-md hover:shadow-lg hover:shadow-amber-200/30">
-                <Sparkles size={14} /> Book Now
-              </Link>
+              <BookingPayButton
+                label="Book Now"
+                className="hidden md:flex items-center gap-1.5 px-5 py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white text-sm font-semibold rounded-full transition-all shadow-md hover:shadow-lg hover:shadow-amber-200/30"
+              />
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
                 className={`md:hidden p-2 rounded-lg transition-colors ${
@@ -322,9 +333,10 @@ export default function Navigation() {
                 );
               })}
               <div className="pt-3">
-                <Link href="/contact" className="flex items-center justify-center gap-2 w-full px-6 py-3.5 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold rounded-full">
-                  <Sparkles size={16} /> Book Your Reading
-                </Link>
+                <BookingPayButton
+                  label="Book Your Reading"
+                  className="flex items-center justify-center gap-2 w-full px-6 py-3.5 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold rounded-full"
+                />
               </div>
             </div>
           </motion.div>

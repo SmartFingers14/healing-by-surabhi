@@ -9,6 +9,8 @@ import { personalServices, businessServices, testimonials, siteConfig, faqs } fr
 import { cn } from "@/lib/utils";
 import HeroSection from "@/components/HeroSection";
 import ServiceIcon from "@/components/ServiceIcon";
+import BookingPayButton from "@/components/BookingPayButton";
+
 
 /* ─── Animated Counter ─── */
 function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
@@ -152,30 +154,20 @@ export default function HomePage() {
             <p className="text-maroon-600 max-w-2xl mx-auto text-sm sm:text-lg">Every reading is a personalized deep-dive — not a template. Choose what&apos;s calling you right now.</p>
           </FadeIn>
 
-          {/* Service images mapping */}
+          {/* Service cards */}
           {(() => {
-            const serviceImages: Record<string, string> = {
-              "dob-analysis": "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80",
-              "name-analysis": "https://images.unsplash.com/photo-1473186505569-9c61870c11f9?w=600&q=80",
-              "mobile-number-analysis": "https://images.unsplash.com/photo-1556656793-08538906a9f8?w=600&q=80",
-              "tarot-reading": "https://images.unsplash.com/photo-1633613286991-611fe299c4be?w=600&q=80",
-              "numerology-combo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80",
-              "business-name-analysis": "https://images.unsplash.com/photo-1664575602554-2087b04935a5?w=600&q=80",
-              "brand-name-suggestion": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80",
-              "partnership-compatibility": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80",
-            };
-
             const ServiceCard = ({ s, i, badge }: { s: typeof personalServices[0]; i: number; badge: string }) => (
               <FadeIn key={s.slug} delay={i * 0.08}>
                 <Link href={`/services/${s.slug}`} className="block h-full group">
                   <div className="relative h-full rounded-2xl overflow-hidden bg-white border border-amber-100/60 hover:border-amber-300/60 transition-all duration-500 hover:shadow-2xl hover:shadow-amber-200/40 hover:-translate-y-2">
                     <div className="relative h-44 sm:h-48 overflow-hidden">
                       <Image
-                        src={serviceImages[s.slug] || "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=600&q=80"}
+                        src={s.image}
                         alt={s.name}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                       />
+
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
                       <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
                         <div>
@@ -385,12 +377,10 @@ export default function HomePage() {
               You&apos;ve felt it — that nagging feeling something&apos;s not aligned. Your name, your birthdate, your decisions... they all carry a vibration. Let Surabhi show you what they&apos;re trying to tell you.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4 sm:px-0">
-              <Link href="/contact" className="w-full sm:w-auto">
-                <motion.div whileHover={{ scale: 1.05, boxShadow: "0 20px 50px rgba(218,165,32,0.3)" }} whileTap={{ scale: 0.95 }}
-                  className="px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-bold text-base sm:text-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white cursor-pointer flex items-center justify-center gap-2">
-                  <Sparkles size={18} /> Book Your Reading Now
-                </motion.div>
-              </Link>
+              <BookingPayButton
+                label="Book Your Reading Now"
+                className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-bold text-base sm:text-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white cursor-pointer flex items-center justify-center gap-2 hover:scale-105 transition-transform"
+              />
               <a href={siteConfig.whatsappLink} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                   className="px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-bold text-base sm:text-lg text-white/70 border border-white/[0.15] cursor-pointer flex items-center justify-center gap-2">
