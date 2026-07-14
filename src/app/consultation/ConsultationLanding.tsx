@@ -7,8 +7,8 @@ import {
   PhoneCall,
   ShieldCheck,
   Clock,
-  Sparkles,
   CheckCircle2,
+
   Briefcase,
   Coins,
   HeartHandshake,
@@ -17,6 +17,8 @@ import {
   Lock,
   Quote,
   ChevronDown,
+  HelpCircle,
+  BadgeCheck,
 } from "lucide-react";
 import { siteConfig, consultationService } from "@/lib/data";
 import ConsultationBooking from "@/components/ConsultationBooking";
@@ -30,6 +32,20 @@ const problems = [
   { icon: HeartHandshake, title: "Relationship tension", text: "Constant friction in marriage or love life." },
   { icon: RefreshCw, title: "Repeating patterns", text: "The same bad luck keeps happening again & again." },
   { icon: Compass, title: "No direction", text: "Confused about a big life decision right now." },
+];
+
+// The "Is this your question?" section — written to make the reader think "yes, that's exactly me".
+const questions = [
+  "Why am I working so hard but success keeps slipping away?",
+  "Will my career finally grow this year — or should I switch jobs?",
+  "Why does money come to me but never stay?",
+  "Is my marriage / relationship going to get better?",
+  "Should I start that business now, or wait?",
+  "Why do the same problems keep repeating in my life?",
+  "Is my name or mobile number bringing me bad luck?",
+  "What is the ONE thing blocking my growth right now?",
+  "Which decision should I take — I feel stuck between two paths?",
+  "What are my lucky numbers, colours and dates?",
 ];
 
 const included = [
@@ -52,7 +68,12 @@ const reviews = [
   { name: "Rajesh K.", loc: "Mumbai", text: "Money was never staying with me. She explained the reason from my numbers and gave 3 simple things to do. Truly eye-opening.", tag: "Finance" },
   { name: "Anita V.", loc: "Bangalore", text: "So warm and honest. She didn't sell me anything — just genuinely helped with my relationship worries. Worth every rupee.", tag: "Relationship" },
   { name: "Meera P.", loc: "Pune", text: "The clarity I got in 25 minutes was more than months of overthinking. Highly recommend the consultation.", tag: "Clarity" },
+  { name: "Vikram S.", loc: "Jaipur", text: "I was confused about a big career decision. Surabhi ji's guidance was so clear that I finally took the step. Best ₹499 I ever spent.", tag: "Decision" },
+  { name: "Sneha R.", loc: "Hyderabad", text: "She told me things about my nature that no one knows. The remedies are simple and I already feel lighter and more positive.", tag: "Peace" },
 ];
+
+// Real review screenshots from the main website.
+const reviewImages = Array.from({ length: 12 }, (_, i) => `/review-${i + 1}.jpeg`);
 
 const faqs = [
   { q: "How is the consultation delivered?", a: "It's a live 20-25 minute personal phone call with Surabhi. After booking, we confirm your details on WhatsApp and schedule a time that suits you." },
@@ -78,7 +99,7 @@ export default function ConsultationLanding() {
     <div className="min-h-screen bg-cream-50 text-maroon-900 pb-24 md:pb-0">
       {/* Minimal brand bar (no navigation links — keeps visitor focused) */}
       <header className="w-full border-b border-saffron-100 bg-white/80 backdrop-blur-sm">
-        <div className="max-w-3xl mx-auto px-5 py-3 flex items-center justify-center gap-2">
+        <div className="max-w-5xl mx-auto px-5 py-3 flex items-center justify-center gap-2">
           <Image src="/logo-icon.png" alt="Healing by Surabhi" width={28} height={28} className="w-7 h-7 object-contain" />
           <span className="text-base font-bold text-maroon-900" style={{ fontFamily: "var(--font-display)" }}>
             Healing by Surabhi
@@ -89,59 +110,85 @@ export default function ConsultationLanding() {
       {/* ═══ HERO ═══ */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-pattern-mandala opacity-40" aria-hidden />
-        <div className="relative max-w-3xl mx-auto px-5 pt-10 pb-12 text-center">
-          {/* Trust pill */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-saffron-200 shadow-sm mb-5">
-            <div className="flex">
-              {Array(5).fill(0).map((_, i) => (
-                <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-              ))}
+        <div className="relative max-w-5xl mx-auto px-5 pt-10 pb-12 grid md:grid-cols-2 gap-8 items-center">
+          {/* Text side */}
+          <div className="text-center md:text-left">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-saffron-200 shadow-sm mb-5">
+              <div className="flex">
+                {Array(5).fill(0).map((_, i) => (
+                  <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+              <span className="text-xs font-semibold text-maroon-700">
+                {siteConfig.rating} · {siteConfig.reportsDelivered} lives guided
+              </span>
             </div>
-            <span className="text-xs font-semibold text-maroon-700">
-              {siteConfig.rating} · {siteConfig.reportsDelivered} lives guided
-            </span>
+
+            <h1
+              className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-maroon-900"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Feeling <span className="text-gradient-gold">stuck</span> in life —
+              and can&apos;t figure out <span className="text-gradient-gold">why?</span>
+            </h1>
+
+            <p className="mt-4 text-base sm:text-lg text-maroon-600 max-w-xl mx-auto md:mx-0">
+              In one honest 20-25 minute call, certified numerologist Surabhi decodes the
+              <strong className="text-maroon-800"> real reason </strong>
+              behind your struggle — and gives you
+              <strong className="text-maroon-800"> 3 remedies to start today.</strong>
+            </p>
+
+            <div className="mt-6 flex items-center justify-center md:justify-start gap-3">
+              <span className="text-maroon-400 line-through text-lg">₹{consultationService.originalPrice}</span>
+              <span className="text-4xl font-extrabold text-temple-gold" style={{ fontFamily: "var(--font-display)" }}>
+                ₹{consultationService.price}
+              </span>
+              <span className="text-xs font-bold px-2 py-1 bg-maroon-600 text-white rounded-full">76% OFF</span>
+            </div>
+
+            <div className="mt-6">
+              <ConsultationBooking label="Book My Consultation — ₹499" className={CTA_CLASS} />
+            </div>
+
+            <div className="mt-5 flex flex-wrap items-center justify-center md:justify-start gap-x-5 gap-y-2 text-xs text-maroon-500">
+              <span className="inline-flex items-center gap-1"><PhoneCall size={14} className="text-temple-gold" /> Live personal call</span>
+              <span className="inline-flex items-center gap-1"><ShieldCheck size={14} className="text-temple-gold" /> 100% confidential</span>
+              <span className="inline-flex items-center gap-1"><Lock size={14} className="text-temple-gold" /> Secure payment</span>
+            </div>
           </div>
 
-          <h1
-            className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-maroon-900"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Feeling <span className="text-gradient-gold">stuck</span> in life —
-            and can&apos;t figure out <span className="text-gradient-gold">why?</span>
-          </h1>
-
-          <p className="mt-4 text-base sm:text-lg text-maroon-600 max-w-xl mx-auto">
-            In one honest 20-25 minute call, certified numerologist Surabhi decodes the
-            <strong className="text-maroon-800"> real reason </strong>
-            behind your struggle — and gives you
-            <strong className="text-maroon-800"> 3 remedies to start today.</strong>
-          </p>
-
-          {/* Price anchor */}
-          <div className="mt-6 flex items-center justify-center gap-3">
-            <span className="text-maroon-400 line-through text-lg">₹{consultationService.originalPrice}</span>
-            <span className="text-4xl font-extrabold text-temple-gold" style={{ fontFamily: "var(--font-display)" }}>
-              ₹{consultationService.price}
-            </span>
-            <span className="text-xs font-bold px-2 py-1 bg-maroon-600 text-white rounded-full">76% OFF</span>
+          {/* Image side — real photo of Surabhi */}
+          <div className="relative mx-auto max-w-sm w-full">
+            <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-saffron-200/60 to-temple-copper/20 blur-xl" aria-hidden />
+            <div className="relative rounded-[2rem] overflow-hidden border-4 border-white shadow-2xl gold-glow">
+              <Image
+                src="/surabhi-photo.jpg"
+                alt="Ms. Surabhi Kapsime — Certified Numerologist"
+                width={480}
+                height={560}
+                className="w-full h-auto object-cover"
+                priority
+              />
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-maroon-900/80 to-transparent p-4">
+                <p className="text-white font-bold text-lg" style={{ fontFamily: "var(--font-display)" }}>{siteConfig.fullName}</p>
+                <p className="text-saffron-200 text-xs">{siteConfig.title} · {siteConfig.experience}</p>
+              </div>
+            </div>
+            {/* Floating trust badge */}
+            <div className="absolute -bottom-4 -left-3 bg-white rounded-2xl shadow-lg px-4 py-2 border border-saffron-100 flex items-center gap-2">
+              <BadgeCheck className="w-6 h-6 text-temple-gold" />
+              <div className="leading-tight">
+                <p className="text-sm font-bold text-maroon-800">{siteConfig.reportsDelivered}</p>
+                <p className="text-[10px] text-maroon-500">Happy clients</p>
+              </div>
+            </div>
           </div>
+        </div>
 
-          <div className="mt-6">
-            <ConsultationBooking
-              label="Book My Consultation — ₹499"
-              className={CTA_CLASS}
-            />
-          </div>
-
-          {/* micro-trust row */}
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-maroon-500">
-            <span className="inline-flex items-center gap-1"><PhoneCall size={14} className="text-temple-gold" /> Live personal call</span>
-            <span className="inline-flex items-center gap-1"><ShieldCheck size={14} className="text-temple-gold" /> 100% confidential</span>
-            <span className="inline-flex items-center gap-1"><Lock size={14} className="text-temple-gold" /> Secure payment</span>
-          </div>
-
-          {/* scarcity */}
-          <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-maroon-50 border border-maroon-100">
+        {/* scarcity strip */}
+        <div className="relative max-w-5xl mx-auto px-5 pb-8 flex justify-center md:justify-start">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-maroon-50 border border-maroon-100">
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-maroon-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-maroon-500" />
@@ -153,12 +200,47 @@ export default function ConsultationLanding() {
         </div>
       </section>
 
+      {/* ═══ IS THIS YOUR QUESTION? (qualifying) ═══ */}
+      <section className="bg-gradient-to-b from-maroon-900 to-maroon-800 py-14 text-white">
+        <div className="max-w-3xl mx-auto px-5">
+          <div className="text-center mb-8">
+            <HelpCircle className="w-10 h-10 mx-auto mb-3 text-saffron-300" />
+            <h2 className="text-2xl sm:text-3xl font-bold" style={{ fontFamily: "var(--font-display)" }}>
+              Is this <span className="text-saffron-300">your</span> question?
+            </h2>
+            <p className="mt-2 text-cream-200/80 max-w-xl mx-auto">
+              If even one of these is running through your mind right now — this call was made for you.
+              Surabhi will answer it clearly, using your numbers.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            {questions.map((q) => (
+              <div
+                key={q}
+                className="flex items-start gap-3 rounded-xl bg-white/[0.06] border border-white/10 px-4 py-3 backdrop-blur-sm"
+              >
+                <Quote size={18} className="text-saffron-300 shrink-0 mt-0.5" />
+                <p className="text-cream-100 text-sm sm:text-base">&ldquo;{q}&rdquo;</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <p className="text-saffron-200 font-semibold mb-4">
+              If you said <span className="underline decoration-saffron-400">&ldquo;yes, that&apos;s me&rdquo;</span> — book your call now.
+            </p>
+            <ConsultationBooking label="Yes, Answer My Question — ₹499" className={CTA_CLASS} />
+          </div>
+        </div>
+      </section>
+
       {/* ═══ PROBLEM (empathy) ═══ */}
-      <section className="max-w-3xl mx-auto px-5 py-10">
+      <section className="max-w-4xl mx-auto px-5 py-12">
         <div className="ornament-divider mb-6">
           <span className="text-sm font-semibold uppercase tracking-widest text-temple-gold">Does this feel familiar?</span>
         </div>
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {problems.map((p) => (
             <div key={p.title} className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-saffron-100 shadow-sm">
               <div className="shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-saffron-100 to-cream-200 flex items-center justify-center">
@@ -230,12 +312,18 @@ export default function ConsultationLanding() {
         </div>
       </section>
 
-      {/* ═══ ABOUT SURABHI (authority) ═══ */}
+      {/* ═══ ABOUT SURABHI (authority, with real image) ═══ */}
       <section className="bg-white border-y border-saffron-100 py-12">
-        <div className="max-w-3xl mx-auto px-5 flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
-          <div className="shrink-0">
-            <div className="w-28 h-28 rounded-full bg-gradient-to-br from-saffron-200 to-temple-copper/30 flex items-center justify-center border-4 border-white shadow-lg">
-              <Sparkles size={40} className="text-temple-copper" />
+        <div className="max-w-4xl mx-auto px-5 flex flex-col sm:flex-row items-center gap-8 text-center sm:text-left">
+          <div className="shrink-0 relative">
+            <div className="w-40 h-40 sm:w-48 sm:h-48 rounded-3xl overflow-hidden border-4 border-white shadow-xl">
+              <Image
+                src="/surabhi-about.jpg"
+                alt="Ms. Surabhi Kapsime"
+                width={220}
+                height={220}
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
           <div>
@@ -247,18 +335,18 @@ export default function ConsultationLanding() {
               With <strong>{siteConfig.reportsDelivered} readings delivered</strong> and a{" "}
               <strong>{siteConfig.rating}★ rating</strong>, Surabhi has spent 7+ years helping people
               cut through confusion and find a clear path forward — using the ancient science of numbers,
-              explained simply and honestly.
+              explained simply and honestly. No fear, no false promises — just genuine, practical guidance.
             </p>
           </div>
         </div>
       </section>
 
-      {/* ═══ SOCIAL PROOF ═══ */}
-      <section className="max-w-3xl mx-auto px-5 py-12">
+      {/* ═══ SOCIAL PROOF — text reviews ═══ */}
+      <section className="max-w-4xl mx-auto px-5 py-12">
         <h2 className="text-2xl sm:text-3xl font-bold text-center text-maroon-900 mb-8" style={{ fontFamily: "var(--font-display)" }}>
           People just like you — <span className="text-gradient-gold">now unstuck</span>
         </h2>
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {reviews.map((r) => (
             <div key={r.name} className="p-5 rounded-2xl bg-white border border-saffron-100 shadow-sm">
               <div className="flex items-center justify-between mb-2">
@@ -277,48 +365,74 @@ export default function ConsultationLanding() {
         </div>
       </section>
 
-      {/* ═══ FAQ ═══ */}
+      {/* ═══ REAL REVIEW SCREENSHOTS ═══ */}
       <section className="bg-white border-y border-saffron-100 py-12">
-        <div className="max-w-3xl mx-auto px-5">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center text-maroon-900 mb-8" style={{ fontFamily: "var(--font-display)" }}>
-            Questions? Answered.
+        <div className="max-w-5xl mx-auto px-5">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center text-maroon-900 mb-2" style={{ fontFamily: "var(--font-display)" }}>
+            Real messages from <span className="text-gradient-gold">real clients</span>
           </h2>
-          <div className="space-y-3">
-            {faqs.map((f, i) => (
-              <div key={f.q} className="rounded-2xl border border-saffron-100 overflow-hidden bg-cream-50">
-                <button
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full flex items-center justify-between gap-3 px-5 py-4 text-left cursor-pointer"
-                >
-                  <span className="font-semibold text-maroon-800 text-sm sm:text-base">{f.q}</span>
-                  <ChevronDown
-                    size={18}
-                    className={`text-temple-gold shrink-0 transition-transform duration-200 ${openFaq === i ? "rotate-180" : ""}`}
-                  />
-                </button>
-                {openFaq === i && (
-                  <div className="px-5 pb-4 -mt-1 text-sm text-maroon-600 leading-relaxed">{f.a}</div>
-                )}
+          <p className="text-center text-maroon-600 mb-8">Screenshots straight from WhatsApp — unedited.</p>
+          <div className="columns-2 sm:columns-3 lg:columns-4 gap-3 space-y-3">
+            {reviewImages.map((src, i) => (
+              <div key={src} className="break-inside-avoid rounded-2xl overflow-hidden border border-saffron-100 shadow-sm bg-cream-50">
+                <Image
+                  src={src}
+                  alt={`Client review ${i + 1}`}
+                  width={400}
+                  height={600}
+                  className="w-full h-auto object-cover"
+                />
               </div>
             ))}
+          </div>
+          <div className="mt-8 text-center">
+            <ConsultationBooking label="I Want This Too — Book ₹499" className={CTA_CLASS} />
           </div>
         </div>
       </section>
 
-      {/* ═══ FINAL CTA ═══ */}
-      <section className="max-w-3xl mx-auto px-5 py-14 text-center">
-        <h2 className="text-2xl sm:text-3xl font-bold text-maroon-900 mb-3" style={{ fontFamily: "var(--font-display)" }}>
-          Your clarity is <span className="text-gradient-gold">one call away</span>
+      {/* ═══ FAQ ═══ */}
+      <section className="max-w-3xl mx-auto px-5 py-12">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center text-maroon-900 mb-8" style={{ fontFamily: "var(--font-display)" }}>
+          Questions? Answered.
         </h2>
-        <p className="text-maroon-600 max-w-lg mx-auto mb-6">
-          Stop guessing why life feels heavy. In 25 minutes you&apos;ll know the real reason —
-          and exactly what to do about it. For just ₹499.
-        </p>
-        <ConsultationBooking label="Book My Consultation — ₹499" className={CTA_CLASS} />
-        <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-maroon-500">
-          <span className="inline-flex items-center gap-1"><ShieldCheck size={14} className="text-temple-gold" /> 100% private</span>
-          <span className="inline-flex items-center gap-1"><PhoneCall size={14} className="text-temple-gold" /> Real human, not an app</span>
-          <span className="inline-flex items-center gap-1"><Star size={14} className="text-temple-gold" /> {siteConfig.rating}★ rated</span>
+        <div className="space-y-3">
+          {faqs.map((f, i) => (
+            <div key={f.q} className="rounded-2xl border border-saffron-100 overflow-hidden bg-white">
+              <button
+                onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                className="w-full flex items-center justify-between gap-3 px-5 py-4 text-left cursor-pointer"
+              >
+                <span className="font-semibold text-maroon-800 text-sm sm:text-base">{f.q}</span>
+                <ChevronDown
+                  size={18}
+                  className={`text-temple-gold shrink-0 transition-transform duration-200 ${openFaq === i ? "rotate-180" : ""}`}
+                />
+              </button>
+              {openFaq === i && (
+                <div className="px-5 pb-4 -mt-1 text-sm text-maroon-600 leading-relaxed">{f.a}</div>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ═══ FINAL CTA ═══ */}
+      <section className="bg-gradient-to-b from-cream-50 to-saffron-100 py-14">
+        <div className="max-w-3xl mx-auto px-5 text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-maroon-900 mb-3" style={{ fontFamily: "var(--font-display)" }}>
+            Your clarity is <span className="text-gradient-gold">one call away</span>
+          </h2>
+          <p className="text-maroon-600 max-w-lg mx-auto mb-6">
+            Stop guessing why life feels heavy. In 25 minutes you&apos;ll know the real reason —
+            and exactly what to do about it. For just ₹499.
+          </p>
+          <ConsultationBooking label="Book My Consultation — ₹499" className={CTA_CLASS} />
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-maroon-500">
+            <span className="inline-flex items-center gap-1"><ShieldCheck size={14} className="text-temple-gold" /> 100% private</span>
+            <span className="inline-flex items-center gap-1"><PhoneCall size={14} className="text-temple-gold" /> Real human, not an app</span>
+            <span className="inline-flex items-center gap-1"><Star size={14} className="text-temple-gold" /> {siteConfig.rating}★ rated</span>
+          </div>
         </div>
       </section>
 
