@@ -3,6 +3,8 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import MetaPixel from "@/components/MetaPixel";
+
 
 export const metadata: Metadata = {
   title: "Healing by Surabhi | Certified Numerologist & Tarot Reader",
@@ -35,11 +37,13 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body className="antialiased bg-cream-50 text-maroon-900 min-h-screen">
+        <MetaPixel />
         <Navigation />
         <main>{children}</main>
         <Footer />
         <WhatsAppButton />
       </body>
+
     </html>
   );
 }

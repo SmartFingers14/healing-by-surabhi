@@ -33,9 +33,10 @@ interface RazorpayInstance {
 declare global {
   interface Window {
     Razorpay?: new (options: RazorpayOptions) => RazorpayInstance;
-    fbq?: (...args: unknown[]) => void;
+    // window.fbq is declared globally in src/lib/fbpixel.ts (Meta Pixel).
   }
 }
+
 
 function loadRazorpayScript(): Promise<boolean> {
   return new Promise((resolve) => {
