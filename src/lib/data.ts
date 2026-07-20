@@ -272,9 +272,9 @@ export const consultationService: Service = {
   shortDescription: "A live 20-25 min personal call with Surabhi to decode your #1 life problem + 3 remedies to start today",
   description:
     "A focused, live one-on-one phone call with certified numerologist Surabhi. In 20-25 minutes she reads your core numbers, identifies the real root cause of the problem troubling you most — career, money, relationship or health — and gives you 3 practical remedies you can begin the same day.",
-  // TEMPORARY: set to ₹1 for end-to-end payment testing. Change back to 499 after testing.
-  price: 1,
+  price: 499,
   originalPrice: 2100,
+
 
   icon: "phone-call",
   image: "/services/dob-analysis.jpg",
