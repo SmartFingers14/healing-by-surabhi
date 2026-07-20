@@ -1,9 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { createPortal } from "react-dom";
-import { Sparkles, X, Loader2, CheckCircle, PhoneCall } from "lucide-react";
+import { Sparkles, X, Loader2, PhoneCall } from "lucide-react";
 import { siteConfig, consultationService } from "@/lib/data";
+import DateInput from "@/components/DateInput";
+
 
 interface RazorpayResponse {
   razorpay_order_id: string;
@@ -71,11 +74,13 @@ export default function ConsultationBooking({
   block?: boolean;
 }) {
   const service = consultationService;
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   const [form, setForm] = useState({ name: "", phone: "", dob: "", problem: "" });
   const [mounted, setMounted] = useState(false);
+
 
   useEffect(() => setMounted(true), []);
 
@@ -154,11 +159,18 @@ export default function ConsultationBooking({
               throw new Error(verifyData.error || "Payment verification failed.");
             }
             setStatus("success");
-            // Meta Pixel: track a completed purchase.
-            if (typeof window !== "undefined" && window.fbq) {
-              window.fbq("track", "Purchase", { value: service.price, currency: "INR" });
-            }
             notifyOnWhatsApp(response.razorpay_payment_id);
+            // Send the buyer to the dedicated thank-you page. That page fires
+            // the Meta Pixel "Purchase" event, so every conversion maps to a
+            // real /thank-you pageview — the cleanest signal for sales tracking.
+            const params = new URLSearchParams({
+              service: service.name,
+              amount: String(service.price),
+              name: form.name,
+              payment_id: response.razorpay_payment_id,
+            });
+            router.push(`/thank-you?${params.toString()}`);
+
           } catch (err) {
             setStatus("error");
             setError(err instanceof Error ? err.message : "Verification failed.");
@@ -210,23 +222,17 @@ export default function ConsultationBooking({
             </button>
 
             {status === "success" ? (
-              <div className="text-center py-4">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
-                  <CheckCircle className="w-8 h-8 text-green-600" />
-                </div>
+              <div className="text-center py-6">
+                <Loader2 className="w-8 h-8 mx-auto mb-4 text-temple-gold animate-spin" />
                 <h3 className="text-xl font-bold text-maroon-900 mb-2" style={{ fontFamily: "var(--font-display)" }}>
-                  Booking Confirmed! 🙏
+                  Payment Successful! 🙏
                 </h3>
-                <p className="text-sm text-maroon-700 mb-4">
-                  Thank you, <strong>{form.name.split(" ")[0] || "friend"}</strong>. We&apos;ve opened WhatsApp so you can
-                  confirm your details — Surabhi will personally call you to schedule your
-                  20-25 minute consultation.
+                <p className="text-sm text-maroon-700">
+                  Taking you to your confirmation page…
                 </p>
-                <button onClick={closeModal} className="text-sm text-temple-gold hover:underline">
-                  Close
-                </button>
               </div>
             ) : (
+
               <form onSubmit={handlePay}>
                 <div className="flex items-center gap-2 mb-1">
                   <PhoneCall size={18} className="text-temple-gold" />
@@ -266,16 +272,16 @@ export default function ConsultationBooking({
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-maroon-800 mb-1">Date of Birth *</label>
-                    <input
-                      type="date"
+                    <DateInput
                       required
                       value={form.dob}
-                      onChange={(e) => setForm({ ...form, dob: e.target.value })}
+                      onChange={(dob) => setForm({ ...form, dob })}
                       className="w-full px-4 py-2.5 rounded-xl border border-saffron-200 bg-cream-50 text-maroon-900 focus:outline-none focus:ring-2 focus:ring-temple-gold/50 focus:border-temple-gold transition-all"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-maroon-800 mb-1">What&apos;s troubling you most? *</label>
+
                     <select
                       required
                       value={form.problem}

@@ -1,9 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { createPortal } from "react-dom";
-import { Sparkles, X, Loader2, CheckCircle } from "lucide-react";
+import { Sparkles, X, Loader2 } from "lucide-react";
 import { siteConfig, allServices } from "@/lib/data";
+import DateInput from "@/components/DateInput";
+
 
 
 interface RazorpayResponse {
@@ -65,10 +68,12 @@ export default function BookingPayButton({
   className?: string;
   label?: string;
 }) {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   const [form, setForm] = useState({ name: "", phone: "", dob: "", email: "" });
+
   // If no fixed slug is provided, let the user choose a service in the modal.
   const [selectedSlug, setSelectedSlug] = useState(slug ?? "");
   const [mounted, setMounted] = useState(false);
@@ -170,10 +175,20 @@ export default function BookingPayButton({
             }
             setStatus("success");
             notifyOnWhatsApp(response.razorpay_payment_id);
+            // Meta Pixel Purchase fires on the /thank-you page we redirect to,
+            // so every sale maps to a real confirmation pageview.
+            const params = new URLSearchParams({
+              service: activeName,
+              amount: String(activePrice),
+              name: form.name,
+              payment_id: response.razorpay_payment_id,
+            });
+            router.push(`/thank-you?${params.toString()}`);
           } catch (err) {
             setStatus("error");
             setError(err instanceof Error ? err.message : "Verification failed.");
           }
+
         },
         modal: {
           ondismiss: () => {
@@ -228,25 +243,17 @@ export default function BookingPayButton({
             </button>
 
             {status === "success" ? (
-              <div className="text-center py-4">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
-                  <CheckCircle className="w-8 h-8 text-green-600" />
-                </div>
+              <div className="text-center py-6">
+                <Loader2 className="w-8 h-8 mx-auto mb-4 text-temple-gold animate-spin" />
                 <h3 className="text-xl font-bold text-maroon-900 mb-2" style={{ fontFamily: "var(--font-display)" }}>
                   Payment Successful! 🙏
                 </h3>
-                <p className="text-sm text-maroon-700 mb-4">
-                  Thank you for booking <strong>{activeName}</strong>. We&apos;ve opened WhatsApp so you can
-                  share your details with Surabhi. Your report will be delivered within 24 hours.
+                <p className="text-sm text-maroon-700">
+                  Taking you to your confirmation page…
                 </p>
-                <button
-                  onClick={closeModal}
-                  className="text-sm text-temple-gold hover:underline"
-                >
-                  Close
-                </button>
               </div>
             ) : (
+
               <form onSubmit={handlePay}>
                 <h3 className="text-xl font-bold text-maroon-900 mb-1" style={{ fontFamily: "var(--font-display)" }}>
                   {fixedService ? `Book ${activeName}` : "Book Your Reading"}
@@ -309,16 +316,16 @@ export default function BookingPayButton({
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-maroon-800 mb-1">Date of Birth *</label>
-                    <input
-                      type="date"
+                    <DateInput
                       required
                       value={form.dob}
-                      onChange={(e) => setForm({ ...form, dob: e.target.value })}
+                      onChange={(dob) => setForm({ ...form, dob })}
                       className="w-full px-4 py-2.5 rounded-xl border border-saffron-200 bg-cream-50 text-maroon-900 focus:outline-none focus:ring-2 focus:ring-temple-gold/50 focus:border-temple-gold transition-all"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-maroon-800 mb-1">Email (Optional)</label>
+
                     <input
                       type="email"
                       value={form.email}

@@ -108,7 +108,7 @@
       "source_file": "src/app/layout.tsx",
       "source_location": "L1",
       "id": "src_app_layout_tsx",
-      "community": 3,
+      "community": 7,
       "norm_label": "layout.tsx"
     },
     {
@@ -117,7 +117,7 @@
       "source_file": "src/app/layout.tsx",
       "source_location": "L9",
       "id": "app_layout_metadata",
-      "community": 3,
+      "community": 7,
       "norm_label": "metadata"
     },
     {
@@ -126,7 +126,7 @@
       "source_file": "src/app/layout.tsx",
       "source_location": "L32",
       "id": "app_layout_rootlayout",
-      "community": 3,
+      "community": 7,
       "norm_label": "rootlayout()"
     },
     {
@@ -243,7 +243,7 @@
       "source_file": "src/app/consultation/ConsultationLanding.tsx",
       "source_location": "L1",
       "id": "src_app_consultation_consultationlanding_tsx",
-      "community": 4,
+      "community": 2,
       "norm_label": "consultationlanding.tsx"
     },
     {
@@ -252,7 +252,7 @@
       "source_file": "src/app/consultation/ConsultationLanding.tsx",
       "source_location": "L29",
       "id": "consultation_consultationlanding_problems",
-      "community": 4,
+      "community": 2,
       "norm_label": "problems"
     },
     {
@@ -261,7 +261,7 @@
       "source_file": "src/app/consultation/ConsultationLanding.tsx",
       "source_location": "L38",
       "id": "consultation_consultationlanding_questions",
-      "community": 4,
+      "community": 2,
       "norm_label": "questions"
     },
     {
@@ -270,7 +270,7 @@
       "source_file": "src/app/consultation/ConsultationLanding.tsx",
       "source_location": "L51",
       "id": "consultation_consultationlanding_included",
-      "community": 4,
+      "community": 2,
       "norm_label": "included"
     },
     {
@@ -279,7 +279,7 @@
       "source_file": "src/app/consultation/ConsultationLanding.tsx",
       "source_location": "L60",
       "id": "consultation_consultationlanding_steps",
-      "community": 4,
+      "community": 2,
       "norm_label": "steps"
     },
     {
@@ -288,7 +288,7 @@
       "source_file": "src/app/consultation/ConsultationLanding.tsx",
       "source_location": "L66",
       "id": "consultation_consultationlanding_reviews",
-      "community": 4,
+      "community": 2,
       "norm_label": "reviews"
     },
     {
@@ -297,7 +297,7 @@
       "source_file": "src/app/consultation/ConsultationLanding.tsx",
       "source_location": "L76",
       "id": "consultation_consultationlanding_reviewimages",
-      "community": 4,
+      "community": 2,
       "norm_label": "reviewimages"
     },
     {
@@ -306,7 +306,7 @@
       "source_file": "src/app/consultation/ConsultationLanding.tsx",
       "source_location": "L78",
       "id": "consultation_consultationlanding_faqs",
-      "community": 4,
+      "community": 2,
       "norm_label": "faqs"
     },
     {
@@ -315,7 +315,7 @@
       "source_file": "src/app/consultation/ConsultationLanding.tsx",
       "source_location": "L87",
       "id": "consultation_consultationlanding_consultationlanding",
-      "community": 4,
+      "community": 2,
       "norm_label": "consultationlanding()"
     },
     {
@@ -324,7 +324,7 @@
       "source_file": "src/app/consultation/page.tsx",
       "source_location": "L1",
       "id": "src_app_consultation_page_tsx",
-      "community": 4,
+      "community": 2,
       "norm_label": "page.tsx"
     },
     {
@@ -333,7 +333,7 @@
       "source_file": "src/app/consultation/page.tsx",
       "source_location": "L4",
       "id": "consultation_page_metadata",
-      "community": 4,
+      "community": 2,
       "norm_label": "metadata"
     },
     {
@@ -342,7 +342,7 @@
       "source_file": "src/app/consultation/page.tsx",
       "source_location": "L18",
       "id": "consultation_page_page",
-      "community": 4,
+      "community": 2,
       "norm_label": "page()"
     },
     {
@@ -450,7 +450,7 @@
       "source_file": "src/app/testimonials/page.tsx",
       "source_location": "L1",
       "id": "src_app_testimonials_page_tsx",
-      "community": 7,
+      "community": 0,
       "norm_label": "page.tsx"
     },
     {
@@ -459,7 +459,7 @@
       "source_file": "src/app/testimonials/page.tsx",
       "source_location": "L10",
       "id": "testimonials_page_fadein",
-      "community": 7,
+      "community": 0,
       "norm_label": "fadein()"
     },
     {
@@ -468,7 +468,7 @@
       "source_file": "src/app/testimonials/page.tsx",
       "source_location": "L20",
       "id": "testimonials_page_allreviews",
-      "community": 7,
+      "community": 0,
       "norm_label": "allreviews"
     },
     {
@@ -477,8 +477,53 @@
       "source_file": "src/app/testimonials/page.tsx",
       "source_location": "L26",
       "id": "testimonials_page_testimonialspage",
-      "community": 7,
+      "community": 0,
       "norm_label": "testimonialspage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src/app/thank-you/page.tsx",
+      "source_location": "L1",
+      "id": "src_app_thank_you_page_tsx",
+      "community": 4,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "metadata",
+      "file_type": "code",
+      "source_file": "src/app/thank-you/page.tsx",
+      "source_location": "L5",
+      "id": "thank_you_page_metadata",
+      "community": 4,
+      "norm_label": "metadata"
+    },
+    {
+      "label": "ThankYouPage()",
+      "file_type": "code",
+      "source_file": "src/app/thank-you/page.tsx",
+      "source_location": "L12",
+      "id": "thank_you_page_thankyoupage",
+      "community": 4,
+      "norm_label": "thankyoupage()"
+    },
+    {
+      "label": "ThankYouContent.tsx",
+      "file_type": "code",
+      "source_file": "src/app/thank-you/ThankYouContent.tsx",
+      "source_location": "L1",
+      "id": "src_app_thank_you_thankyoucontent_tsx",
+      "community": 4,
+      "norm_label": "thankyoucontent.tsx"
+    },
+    {
+      "label": "ThankYouContent()",
+      "file_type": "code",
+      "source_file": "src/app/thank-you/ThankYouContent.tsx",
+      "source_location": "L11",
+      "id": "thank_you_thankyoucontent_thankyoucontent",
+      "community": 4,
+      "norm_label": "thankyoucontent()"
     },
     {
       "label": "BookingPayButton.tsx",
@@ -486,70 +531,70 @@
       "source_file": "src/components/BookingPayButton.tsx",
       "source_location": "L1",
       "id": "src_components_bookingpaybutton_tsx",
-      "community": 2,
+      "community": 3,
       "norm_label": "bookingpaybutton.tsx"
     },
     {
       "label": "RazorpayResponse",
       "file_type": "code",
       "source_file": "src/components/BookingPayButton.tsx",
-      "source_location": "L9",
+      "source_location": "L12",
       "id": "components_bookingpaybutton_razorpayresponse",
-      "community": 2,
+      "community": 3,
       "norm_label": "razorpayresponse"
     },
     {
       "label": "RazorpayOptions",
       "file_type": "code",
       "source_file": "src/components/BookingPayButton.tsx",
-      "source_location": "L15",
+      "source_location": "L18",
       "id": "components_bookingpaybutton_razorpayoptions",
-      "community": 2,
+      "community": 3,
       "norm_label": "razorpayoptions"
     },
     {
       "label": "RazorpayInstance",
       "file_type": "code",
       "source_file": "src/components/BookingPayButton.tsx",
-      "source_location": "L29",
+      "source_location": "L32",
       "id": "components_bookingpaybutton_razorpayinstance",
-      "community": 2,
+      "community": 3,
       "norm_label": "razorpayinstance"
     },
     {
       "label": "Window",
       "file_type": "code",
       "source_file": "src/components/BookingPayButton.tsx",
-      "source_location": "L35",
+      "source_location": "L38",
       "id": "components_bookingpaybutton_window",
-      "community": 2,
+      "community": 3,
       "norm_label": "window"
     },
     {
       "label": "loadRazorpayScript()",
       "file_type": "code",
       "source_file": "src/components/BookingPayButton.tsx",
-      "source_location": "L40",
+      "source_location": "L43",
       "id": "components_bookingpaybutton_loadrazorpayscript",
-      "community": 2,
+      "community": 3,
       "norm_label": "loadrazorpayscript()"
     },
     {
       "label": "Status",
       "file_type": "code",
       "source_file": "src/components/BookingPayButton.tsx",
-      "source_location": "L52",
+      "source_location": "L55",
       "id": "components_bookingpaybutton_status",
-      "community": 2,
+      "community": 3,
       "norm_label": "status"
     },
     {
       "label": "BookingPayButton()",
       "file_type": "code",
       "source_file": "src/components/BookingPayButton.tsx",
-      "source_location": "L54",
+      "source_location": "L57",
       "id": "components_bookingpaybutton_bookingpaybutton",
-      "community": 2,
+      "community": 3,
       "norm_label": "bookingpaybutton()"
     },
     {
@@ -565,7 +610,7 @@
       "label": "RazorpayResponse",
       "file_type": "code",
       "source_file": "src/components/ConsultationBooking.tsx",
-      "source_location": "L8",
+      "source_location": "L11",
       "id": "components_consultationbooking_razorpayresponse",
       "community": 5,
       "norm_label": "razorpayresponse"
@@ -574,7 +619,7 @@
       "label": "RazorpayOptions",
       "file_type": "code",
       "source_file": "src/components/ConsultationBooking.tsx",
-      "source_location": "L14",
+      "source_location": "L17",
       "id": "components_consultationbooking_razorpayoptions",
       "community": 5,
       "norm_label": "razorpayoptions"
@@ -583,7 +628,7 @@
       "label": "RazorpayInstance",
       "file_type": "code",
       "source_file": "src/components/ConsultationBooking.tsx",
-      "source_location": "L28",
+      "source_location": "L31",
       "id": "components_consultationbooking_razorpayinstance",
       "community": 5,
       "norm_label": "razorpayinstance"
@@ -592,7 +637,7 @@
       "label": "Window",
       "file_type": "code",
       "source_file": "src/components/ConsultationBooking.tsx",
-      "source_location": "L34",
+      "source_location": "L37",
       "id": "components_consultationbooking_window",
       "community": 5,
       "norm_label": "window"
@@ -601,7 +646,7 @@
       "label": "loadRazorpayScript()",
       "file_type": "code",
       "source_file": "src/components/ConsultationBooking.tsx",
-      "source_location": "L41",
+      "source_location": "L44",
       "id": "components_consultationbooking_loadrazorpayscript",
       "community": 5,
       "norm_label": "loadrazorpayscript()"
@@ -610,7 +655,7 @@
       "label": "Status",
       "file_type": "code",
       "source_file": "src/components/ConsultationBooking.tsx",
-      "source_location": "L53",
+      "source_location": "L56",
       "id": "components_consultationbooking_status",
       "community": 5,
       "norm_label": "status"
@@ -619,7 +664,7 @@
       "label": "PROBLEMS",
       "file_type": "code",
       "source_file": "src/components/ConsultationBooking.tsx",
-      "source_location": "L55",
+      "source_location": "L58",
       "id": "components_consultationbooking_problems",
       "community": 5,
       "norm_label": "problems"
@@ -628,10 +673,28 @@
       "label": "ConsultationBooking()",
       "file_type": "code",
       "source_file": "src/components/ConsultationBooking.tsx",
-      "source_location": "L64",
+      "source_location": "L67",
       "id": "components_consultationbooking_consultationbooking",
       "community": 5,
       "norm_label": "consultationbooking()"
+    },
+    {
+      "label": "DateInput.tsx",
+      "file_type": "code",
+      "source_file": "src/components/DateInput.tsx",
+      "source_location": "L1",
+      "id": "src_components_dateinput_tsx",
+      "community": 5,
+      "norm_label": "dateinput.tsx"
+    },
+    {
+      "label": "DateInput()",
+      "file_type": "code",
+      "source_file": "src/components/DateInput.tsx",
+      "source_location": "L12",
+      "id": "components_dateinput_dateinput",
+      "community": 5,
+      "norm_label": "dateinput()"
     },
     {
       "label": "Footer.tsx",
@@ -639,7 +702,7 @@
       "source_file": "src/components/Footer.tsx",
       "source_location": "L1",
       "id": "src_components_footer_tsx",
-      "community": 0,
+      "community": 7,
       "norm_label": "footer.tsx"
     },
     {
@@ -648,7 +711,7 @@
       "source_file": "src/components/Footer.tsx",
       "source_location": "L10",
       "id": "components_footer_footer",
-      "community": 0,
+      "community": 7,
       "norm_label": "footer()"
     },
     {
@@ -657,7 +720,7 @@
       "source_file": "src/components/HeroSection.tsx",
       "source_location": "L1",
       "id": "src_components_herosection_tsx",
-      "community": 2,
+      "community": 3,
       "norm_label": "herosection.tsx"
     },
     {
@@ -666,7 +729,7 @@
       "source_file": "src/components/HeroSection.tsx",
       "source_location": "L13",
       "id": "components_herosection_counter",
-      "community": 2,
+      "community": 3,
       "norm_label": "counter()"
     },
     {
@@ -675,7 +738,7 @@
       "source_file": "src/components/HeroSection.tsx",
       "source_location": "L26",
       "id": "components_herosection_mysticalsymbols",
-      "community": 2,
+      "community": 3,
       "norm_label": "mysticalsymbols"
     },
     {
@@ -684,7 +747,7 @@
       "source_file": "src/components/HeroSection.tsx",
       "source_location": "L27",
       "id": "components_herosection_numerologynumbers",
-      "community": 2,
+      "community": 3,
       "norm_label": "numerologynumbers"
     },
     {
@@ -693,7 +756,7 @@
       "source_file": "src/components/HeroSection.tsx",
       "source_location": "L29",
       "id": "components_herosection_herosection",
-      "community": 2,
+      "community": 3,
       "norm_label": "herosection()"
     },
     {
@@ -720,7 +783,7 @@
       "source_file": "src/components/MetaPixel.tsx",
       "source_location": "L1",
       "id": "src_components_metapixel_tsx",
-      "community": 3,
+      "community": 4,
       "norm_label": "metapixel.tsx"
     },
     {
@@ -729,7 +792,7 @@
       "source_file": "src/components/MetaPixel.tsx",
       "source_location": "L18",
       "id": "components_metapixel_pageviewtracker",
-      "community": 3,
+      "community": 4,
       "norm_label": "pageviewtracker()"
     },
     {
@@ -738,7 +801,7 @@
       "source_file": "src/components/MetaPixel.tsx",
       "source_location": "L39",
       "id": "components_metapixel_metapixel",
-      "community": 3,
+      "community": 4,
       "norm_label": "metapixel()"
     },
     {
@@ -801,7 +864,7 @@
       "source_file": "src/components/WhatsAppButton.tsx",
       "source_location": "L1",
       "id": "src_components_whatsappbutton_tsx",
-      "community": 3,
+      "community": 7,
       "norm_label": "whatsappbutton.tsx"
     },
     {
@@ -810,7 +873,7 @@
       "source_file": "src/components/WhatsAppButton.tsx",
       "source_location": "L9",
       "id": "components_whatsappbutton_whatsappbutton",
-      "community": 3,
+      "community": 7,
       "norm_label": "whatsappbutton()"
     },
     {
@@ -864,7 +927,7 @@
       "source_file": "src/lib/data.ts",
       "source_location": "L268",
       "id": "lib_data_consultationservice",
-      "community": 5,
+      "community": 2,
       "norm_label": "consultationservice"
     },
     {
@@ -891,7 +954,7 @@
       "source_file": "src/lib/data.ts",
       "source_location": "L300",
       "id": "lib_data_testimonials",
-      "community": 7,
+      "community": 0,
       "norm_label": "testimonials"
     },
     {
@@ -909,7 +972,7 @@
       "source_file": "src/lib/fbpixel.ts",
       "source_location": "L1",
       "id": "src_lib_fbpixel_ts",
-      "community": 3,
+      "community": 4,
       "norm_label": "fbpixel.ts"
     },
     {
@@ -918,7 +981,7 @@
       "source_file": "src/lib/fbpixel.ts",
       "source_location": "L9",
       "id": "lib_fbpixel_fbqargs",
-      "community": 3,
+      "community": 4,
       "norm_label": "fbqargs"
     },
     {
@@ -927,7 +990,7 @@
       "source_file": "src/lib/fbpixel.ts",
       "source_location": "L12",
       "id": "lib_fbpixel_window",
-      "community": 3,
+      "community": 4,
       "norm_label": "window"
     },
     {
@@ -936,7 +999,7 @@
       "source_file": "src/lib/fbpixel.ts",
       "source_location": "L23",
       "id": "lib_fbpixel_pageview",
-      "community": 3,
+      "community": 4,
       "norm_label": "pageview()"
     },
     {
@@ -945,7 +1008,7 @@
       "source_file": "src/lib/fbpixel.ts",
       "source_location": "L34",
       "id": "lib_fbpixel_event",
-      "community": 3,
+      "community": 4,
       "norm_label": "event()"
     },
     {
@@ -1120,9 +1183,9 @@
       "source_file": "src/app/layout.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_layout_tsx",
-      "target": "src_components_metapixel_tsx",
-      "confidence_score": 1.0
+      "target": "src_components_metapixel_tsx"
     },
     {
       "relation": "contains",
@@ -1890,6 +1953,91 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/app/thank-you/page.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_app_thank_you_page_tsx",
+      "target": "src_app_thank_you_thankyoucontent_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/thank-you/page.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_app_thank_you_page_tsx",
+      "target": "thank_you_page_metadata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/thank-you/page.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_app_thank_you_page_tsx",
+      "target": "thank_you_page_thankyoupage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/thank-you/ThankYouContent.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_app_thank_you_thankyoucontent_tsx",
+      "target": "src_lib_data_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/thank-you/ThankYouContent.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_app_thank_you_thankyoucontent_tsx",
+      "target": "lib_data_siteconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/thank-you/ThankYouContent.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_app_thank_you_thankyoucontent_tsx",
+      "target": "src_lib_fbpixel_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/thank-you/ThankYouContent.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_app_thank_you_thankyoucontent_tsx",
+      "target": "lib_fbpixel_event",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/thank-you/ThankYouContent.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_app_thank_you_thankyoucontent_tsx",
+      "target": "thank_you_thankyoucontent_thankyoucontent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/components/BookingPayButton.tsx",
       "source_location": "L6",
       "weight": 1.0,
@@ -1918,6 +2066,17 @@
       "confidence_score": 1.0,
       "source": "src_components_bookingpaybutton_tsx",
       "target": "lib_data_allservices"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/BookingPayButton.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_components_bookingpaybutton_tsx",
+      "target": "src_components_dateinput_tsx",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2045,6 +2204,17 @@
       "target": "lib_data_consultationservice"
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ConsultationBooking.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_components_consultationbooking_tsx",
+      "target": "src_components_dateinput_tsx",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ConsultationBooking.tsx",
@@ -2123,6 +2293,16 @@
       "confidence_score": 1.0,
       "source": "src_components_consultationbooking_tsx",
       "target": "components_consultationbooking_consultationbooking"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/DateInput.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_components_dateinput_tsx",
+      "target": "components_dateinput_dateinput",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -2235,9 +2415,9 @@
       "source_file": "src/components/MetaPixel.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_components_metapixel_tsx",
-      "target": "src_lib_fbpixel_ts",
-      "confidence_score": 1.0
+      "target": "src_lib_fbpixel_ts"
     },
     {
       "relation": "imports",
@@ -2246,9 +2426,9 @@
       "source_file": "src/components/MetaPixel.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_components_metapixel_tsx",
-      "target": "lib_fbpixel_pageview",
-      "confidence_score": 1.0
+      "target": "lib_fbpixel_pageview"
     },
     {
       "relation": "contains",
@@ -2256,9 +2436,9 @@
       "source_file": "src/components/MetaPixel.tsx",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_components_metapixel_tsx",
-      "target": "components_metapixel_pageviewtracker",
-      "confidence_score": 1.0
+      "target": "components_metapixel_pageviewtracker"
     },
     {
       "relation": "contains",
@@ -2266,9 +2446,9 @@
       "source_file": "src/components/MetaPixel.tsx",
       "source_location": "L39",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_components_metapixel_tsx",
-      "target": "components_metapixel_metapixel",
-      "confidence_score": 1.0
+      "target": "components_metapixel_metapixel"
     },
     {
       "relation": "imports_from",
@@ -2482,9 +2662,9 @@
       "source_file": "src/lib/fbpixel.ts",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_lib_fbpixel_ts",
-      "target": "lib_fbpixel_fbqargs",
-      "confidence_score": 1.0
+      "target": "lib_fbpixel_fbqargs"
     },
     {
       "relation": "contains",
@@ -2492,9 +2672,9 @@
       "source_file": "src/lib/fbpixel.ts",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_lib_fbpixel_ts",
-      "target": "lib_fbpixel_window",
-      "confidence_score": 1.0
+      "target": "lib_fbpixel_window"
     },
     {
       "relation": "contains",
@@ -2502,9 +2682,9 @@
       "source_file": "src/lib/fbpixel.ts",
       "source_location": "L23",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_lib_fbpixel_ts",
-      "target": "lib_fbpixel_pageview",
-      "confidence_score": 1.0
+      "target": "lib_fbpixel_pageview"
     },
     {
       "relation": "contains",
@@ -2512,9 +2692,9 @@
       "source_file": "src/lib/fbpixel.ts",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_lib_fbpixel_ts",
-      "target": "lib_fbpixel_event",
-      "confidence_score": 1.0
+      "target": "lib_fbpixel_event"
     },
     {
       "relation": "contains",
